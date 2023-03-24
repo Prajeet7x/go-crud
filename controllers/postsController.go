@@ -60,3 +60,17 @@ func GetOnePost(c *gin.Context) {
 		"All posts": post,
 	})
 }
+
+func DeletePost(c *gin.Context) {
+	//Get the id off form the URL
+	id := c.Param("id")
+
+	var post []model.Post
+
+	initializers.DB.Delete(&post, id)
+	// DELETE from emails where id = 10;
+
+	c.JSON(200, gin.H{
+		"Deleted post": post,
+	})
+}
