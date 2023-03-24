@@ -34,7 +34,6 @@ func PostsCreate(c *gin.Context) {
 }
 
 func GetAllPosts(c *gin.Context) {
-
 	var posts []model.Post
 
 	//Get the posts
@@ -43,5 +42,21 @@ func GetAllPosts(c *gin.Context) {
 	//Return the data
 	c.JSON(200, gin.H{
 		"All posts": posts,
+	})
+}
+
+func GetOnePost(c *gin.Context) {
+	//Get id of URL
+	id := c.Param("id")
+
+	// Get the posts
+	var post []model.Post
+
+	// Get the first record ordered by primary key
+	initializers.DB.First(&post, id)
+	// SELECT * FROM users ORDER BY id LIMIT 1;
+
+	c.JSON(200, gin.H{
+		"All posts": post,
 	})
 }

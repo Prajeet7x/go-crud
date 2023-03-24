@@ -16,5 +16,6 @@ func main() {
 	r := gin.Default()
 	r.POST("/posts", controllers.PostsCreate)
 	r.GET("/posts", controllers.GetAllPosts)
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.GET("/posts/:id", controllers.GetOnePost)
+	r.Run() // listen and serve on 0.0.0.0:3000
 }
