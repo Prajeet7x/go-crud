@@ -32,3 +32,16 @@ func PostsCreate(c *gin.Context) {
 		"post": post,
 	})
 }
+
+func GetAllPosts(c *gin.Context) {
+
+	var posts []model.Post
+
+	//Get the posts
+	initializers.DB.Find(&posts)
+
+	//Return the data
+	c.JSON(200, gin.H{
+		"All posts": posts,
+	})
+}
