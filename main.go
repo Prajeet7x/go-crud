@@ -19,6 +19,7 @@ func main() {
 	r.GET("/posts", controllers.GetAllPosts)
 	r.GET("/posts/:id", controllers.GetOnePost)
 	r.DELETE("posts/:id", controllers.DeletePost)
+	r.PUT("posts/:id", controllers.UpdatePost)
 
 	r.Run() // listen and serve on 0.0.0.0:3000
 }

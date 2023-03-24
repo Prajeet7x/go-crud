@@ -74,3 +74,30 @@ func DeletePost(c *gin.Context) {
 		"Deleted post": post,
 	})
 }
+
+func UpdatePost(c *gin.Context) {
+	//Get the id off form the URL
+	id := c.Param("id")
+
+	// Request body
+	var body struct {
+		Body  string
+		Title string
+	}
+
+	c.Bind(&body)
+
+	// Get the posts
+	var post []model.Post
+	initializers.DB.First(&post, id)
+
+	//Update the post
+	initializers.DB.Model(&post).Updates(model.Post{
+		Title: body.Title,
+		Body:  body.Body,
+	})
+
+	c.JSON(200, gin.H{
+		"Updated post": post,
+	})
+}
